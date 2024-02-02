@@ -38,7 +38,7 @@ simple, for several reasons:
 ... you are going to come up with some kind of spreadsheet, or such, and review the connections
 between specs and tests so often that you can definitely manage. 
 
-But then, you are not like me.
+But then, if you are like that, you are not like me.
 
 ### The solution: if you are like me, and want to "see" that connection between specs and tests more directly ...
 
@@ -78,13 +78,13 @@ Some sensible ideas, but all is optional, so nothing to test.
 ### How does it work?
 
 You need to work with a spec whose format is HTML, because we are using HTML trickery (custom
-HTML tags / [Web Components](https://en.wikipedia.org/wiki/Web_Components).
+HTML tags / [Web Components](https://en.wikipedia.org/wiki/Web_Components).)
 
 1. Make a copy of the spec, such as `complicated-standard.html` to `complicated-standard-annost.html`.
  
 1. Open the annosted HTML file in a browser window.
 
-1. Add Annost: edit `complicated-standard-annost.html` and this single line to the HTML HEAD:
+1. Edit `complicated-standard-annost.html` and this single line to the HTML HEAD:
 
    <pre>&lt;script src="annost.js"&gt;&lt;/script&gt;</pre>
 
@@ -95,27 +95,32 @@ HTML tags / [Web Components](https://en.wikipedia.org/wiki/Web_Components).
 
    * <pre>&lt;annost-test testid="SECTION/INDEX" name="NAME" role="ROLE" level="LEVEL">
      LONG DESCRIPTION...
+     &lt;/annost-test&gt;
      </pre>
 
      This defines a test. You give it a `testid` derived from the SECTION of the spec in which 
-     you define this test, and another local identifier (INDEX) in case you have several tests
-     in the same section. NAME is a short name so you can remember what it is. ROLE indicates
-     whether this tests the client, or the server, or whatever other roles you have in your
+     you define this test, and another local identifier (INDEX) to disambiguate in case you have
+     several tests in the same section. NAME is a short name so you can remember what it is. ROLE
+     indicates whether this tests the client, or the server, or whatever other roles you have in your
      protocol, and LEVEL is something like "must" or "should". LONG DESCRIPTION: you provide
      as much detail as needed so the test can be coded.
 
      When you code the test, you name it based on SECTION/INDEX and/or NAME, so it is easy
      to go from test to spec (we know the section in which it was defined) and from spec
      to test (it's named after the section, and the content of the above tags is inlined
-     right in your browser in the context of the spec.
+     right in your browser in the context of the spec).
 
-   * <pre>&lt;annost-xref target="TARGETID"&gt;&lt;annost-xref&gt;
+   * <pre>&lt;annost-xref target="TARGETID"&gt;&lt;annost-xref&gt;</pre>
 
-     Use this to create a cross-reference to another test. This is useful if the spec describes
-     something testable for which you defined a test before. This way, you can remind yourself:
+     Use this to create a cross-reference to another test. TARGETID is the testid of the test
+     being referenced. This is useful if a later section of the spec describes something testable
+     for which you defined a test before. This way, you can remind yourself:
      yes, I dealt with this before. (Sorry, no backreferences yet.)
 
-   * <pre>&lt;annost-note&gt;TEXT&lt/annost-note&gt;
+   * <pre>&lt;annost-note&gt;
+     NOTE TEXT
+     &lt/annost-note&gt;
+     </pre>
 
      This lets you leave a note. Like "I have no idea what they are talking about here" :-)
 
@@ -126,4 +131,11 @@ HTML tags / [Web Components](https://en.wikipedia.org/wiki/Web_Components).
    enough to fix the annoated copy.
 
 
+## Status
+
+This is a proof-of-concept hack. I have no idea how it may or may not evolve. Right now I'm using
+it to identify tests in Fediverse protocol standards, and it seems to do a good job at it.
+We'll see where it goes.
+
+Feedback and improvements appreciated :-)
 
