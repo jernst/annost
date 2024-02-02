@@ -122,7 +122,7 @@ HTML tags / [Web Components](https://en.wikipedia.org/wiki/Web_Components).)
    not just add ANNOST annotations. So every now and then, you might want to do
    `diff complicated-standard.html complicated-standard-annost.html`. If you are reasonably
    careful about your editing, all it should show is ANNOST blocks. And if not, it's easy
-   enough to fix the annoated copy.
+   enough to fix the annotated copy.
 
 
 ## Status
