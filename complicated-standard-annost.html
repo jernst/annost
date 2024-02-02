@@ -1,0 +1,89 @@
+<html>
+ <head>
+  <title>Complicated Standard, latest version</title>
+  <style>
+body {
+    font-family: Arial, sans;
+    max-width: 980px;
+    margin: 20px auto;
+    counter-reset: h2;
+    background: #f0f0f0;
+}
+h2:before {
+    counter-increment: h2;
+    content: counter(h2) '. ';
+    counter-reset: h3;
+}
+h3:before {
+    counter-increment: h3;
+    content: counter(h2) '.' counter(h3) '. ';
+}
+table {
+    border-collapse: collapse;
+}
+td, th {
+    border: 1px solid black;
+    padding: 1ex;
+}
+  </style>
+  <script src='annost.js'></script>
+ </head>
+ <body>
+  <h1>Complicated Standard, latest version</h1>
+
+  <h2>Intro</h2>
+  <p>There are clients, and there are servers. They shall communicate with each other
+     and understand each other really well.</p>
+  <annost-note>
+   Nothing to test in this section.
+  </annost-note>
+
+  <h2>Behaviors</h2>
+
+  <h3>Ahem</h3>
+  <p>Every night when midnight strikes in UTC, the client shall send an &quot;Ahem&quot;
+     request to the server. The server, open receipt, shall respond, within 5sec, with
+     &quot;One of these nights again&quot;.
+  </p>
+  <annost-test testid='2.1/1' name='Server receives Ahem request at approx UTC midnight' role='Server' level='MUST'>
+   <p>Set up 8 clients for the server-under-test. Check that the server receives an the Ahem
+   request for each client within 10sec before or after UTC midnight.</p>
+  </annost-test>
+  <annost-test testid='2.1/2' name='Client receives timely Ahem response' role='Client' level='MUST'>
+   <p>Start a timer every time the client issues the Ahem request. Check that within 5sec,
+   is has received the response &quot;One of these nights again&quot;.</p>
+  </annost-test>
+
+  <h3>Nudge Nudge</h3>
+  <p>The client may send the "Nudge Nudge" message to the server. The server then responds
+     with &quot;I beg your pardon&quot;.</p>
+  <annost-test testid='2.2/1' name='Server processes Nudge Nudge' role='Client' level='MUST'>
+   <p>Set up a client and server. Make client send Nudge Nudge. Check that server responds
+   to each Nudge Nudge with &quot;I beg your pardon&quot;.</p>
+  </annost-test>
+
+  <p>If the server receives an unknown message from the client, it must respond with an
+     error code.</p>
+  <annost-test testid='2.2/2' name='Server rejects unknown messages' role='Server' level='MUST'>
+   <p>Set up a client and server. Make client send the following messages, expecting the
+   corresponding responses.</p>
+   <table>
+    <tr>
+     <th>Client sends</th>
+     <th>Expected response</th>
+    </tr>
+    <tr>
+     <td>&quot;4711&quot;</td>
+     <td>Error</td>
+    </tr>
+    <tr>
+     <td>&quot;Nudge Nudge&quot;</td>
+     <td>&quot;I beg your pardon&quot;</td>
+    </tr>
+    <tr>
+     <td>&quot;Say no more&quot;</td>
+     <td>Error</td>
+    </tr>
+  </annost-test>
+ </body>
+</html>

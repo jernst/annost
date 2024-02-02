@@ -12,7 +12,7 @@ you go about that? (This also applies if you are/represent the standards organiz
 and you try to define tests for your own standard.)
 
 There are likely going to be dozens, maybe 100's of tests -- depending on the complexity of the
-protocol -- that you need to define to get reasonable test coverage. Managing those is not 
+protocol -- that you need to define to get reasonable test coverage. Managing those is not
 simple, for several reasons:
 
 * If you look at a given test you wrote (or worse, that somebody else wrote): how do you determine
@@ -36,7 +36,7 @@ simple, for several reasons:
 ### The solution: if you are very diligent and have a lot of time ...
 
 ... you are going to come up with some kind of spreadsheet, or such, and review the connections
-between specs and tests so often that you can definitely manage. 
+between specs and tests so often that you can definitely manage.
 
 But then, if you are like that, you are not like me.
 
@@ -48,32 +48,26 @@ Sounds atrocious? Yep, it is. But also surprisingly useful and usable.
 
 ### Example
 
-This is from work marking up the ActivityPub spec for [feditest.org](https://feditest.org/):
+There is a toy example in this directory. Here are screenshots, to try it your self you
+need to clone this repo and open the HTML files locally in your browser.
 
-Section 6.10 of the unmodified spec:
+Here's a screen shot of the [unmodified spec](complicated-standard.html):
 
-![Section 6.10 -- unmodified](images/ap-spec-example.png)
+![Screenshot unmodified standard](images/complicated-standard.png)
 
-Section 6.10 of the spec with a test and a note ANNOST annotation:
+Here's a screen shot of the [spec with ANNOST annotations](complicated-standard-annost.html):
 
-![Section 6.10 -- with ANNOST annotations](images/ap-spec-example-annost.png)
+![Screenshot standard with ANNOST annotations](images/complicated-standard-annost.png)
 
-Other than adding a Javascript include into the HTML header, the boxes were created by the
-following added markup :
+Other than adding a Javascript include into the HTML header, the boxes were created by
+adding markup such as the following:
 
 <pre>
-&lt;annost-test testid="6.10/1" name="Only the same actor may undo" role="FP-endpoint, C-endpoint" level="MUST" id="test-6.10/1"&gt;
-Any UNDO activity created by a client or FP endpoint MUST have the same actor
-as the activity referenced that is being undone.
-&lt;/annost-test&gt;
+  &lt;annost-test testid='2.1/1' name='Server receives Ahem request at approx UTC midnight' role='Server' level='MUST'&gt;
+   &lt;p>Set up 8 clients for the server-under-test. Check that the server receives an the Ahem
+   request for each client within 10sec before or after UTC midnight.&lt;/p&gt;
+  &lt;/annost-test&gt;
 </pre>
-<pre>
-&lt;annost-note&gt;
-Some sensible ideas, but all is optional, so nothing to test.
-&lt;/annost-note&gt;
-</pre>
-(You may disagree with the test definition and the note with respect to testing ActivityPub
--- this is very much work in progress and not the point here.)
 
 ### How does it work?
 
@@ -81,7 +75,7 @@ You need to work with a spec whose format is HTML, because we are using HTML tri
 HTML tags / [Web Components](https://en.wikipedia.org/wiki/Web_Components).)
 
 1. Make a copy of the spec, such as `complicated-standard.html` to `complicated-standard-annost.html`.
- 
+
 1. Open the annosted HTML file in a browser window.
 
 1. Edit `complicated-standard-annost.html` and this single line to the HTML HEAD:
@@ -98,7 +92,7 @@ HTML tags / [Web Components](https://en.wikipedia.org/wiki/Web_Components).)
      &lt;/annost-test&gt;
      </pre>
 
-     This defines a test. You give it a `testid` derived from the SECTION of the spec in which 
+     This defines a test. You give it a `testid` derived from the SECTION of the spec in which
      you define this test, and another local identifier (INDEX) to disambiguate in case you have
      several tests in the same section. NAME is a short name so you can remember what it is. ROLE
      indicates whether this tests the client, or the server, or whatever other roles you have in your
@@ -134,8 +128,8 @@ HTML tags / [Web Components](https://en.wikipedia.org/wiki/Web_Components).)
 ## Status
 
 This is a proof-of-concept hack. I have no idea how it may or may not evolve. Right now I'm using
-it to identify tests in Fediverse protocol standards, and it seems to do a good job at it.
-We'll see where it goes.
+it to identify tests in Fediverse protocol standards for the [FediTest project](https://feditest.org/),
+and it seems to do a good job at it. We'll see where it goes.
 
 Feedback and improvements appreciated :-)
 

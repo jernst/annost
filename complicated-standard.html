@@ -1,0 +1,53 @@
+<html>
+ <head>
+  <title>Complicated Standard, latest version</title>
+  <style>
+body {
+    font-family: Arial, sans;
+    max-width: 980px;
+    margin: 20px auto;
+    counter-reset: h2;
+    background: #f0f0f0;
+}
+h2:before {
+    counter-increment: h2;
+    content: counter(h2) '. ';
+    counter-reset: h3;
+}
+h3:before {
+    counter-increment: h3;
+    content: counter(h2) '.' counter(h3) '. ';
+}
+table {
+    border-collapse: collapse;
+}
+td, th {
+    border: 1px solid black;
+    padding: 1ex;
+}
+  </style>
+  <script src='annost.js'></script>
+ </head>
+ <body>
+  <h1>Complicated Standard, latest version</h1>
+
+  <h2>Intro</h2>
+  <p>There are clients, and there are servers. They shall communicate with each other
+     and understand each other really well.</p>
+
+  <h2>Behaviors</h2>
+
+  <h3>Ahem</h3>
+  <p>Every night when midnight strikes in UTC, the client shall send an &quot;Ahem&quot;
+     request to the server. The server, open receipt, shall respond, within 5sec, with
+     &quot;One of these nights again&quot;.
+  </p>
+
+  <h3>Nudge Nudge</h3>
+  <p>The client may send the "Nudge Nudge" message to the server. The server then responds
+     with &quot;I beg your pardon&quot;.</p>
+
+  <p>If the server receives an unknown message from the client, it must respond with an
+     error code.</p>
+ </body>
+</html>
