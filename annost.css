@@ -14,6 +14,7 @@
 }
 .annost div.annost-content {
     padding: 10px 20px;
+    background: #f8f8f8;
 }
 .annost div.annost-content > :first-child {
     margin-top: 0;
