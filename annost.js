@@ -13,6 +13,7 @@ class AnnostTest extends HTMLElement {
       <section class='annost annost-test'>
         <div class='annost-bar'>ANNOST TEST</div>
         <div class='annost-content'>
+          <p class='annost-role'></p>
           <h2></h2>
           <slot></slot>
         </div>
@@ -25,14 +26,21 @@ class AnnostTest extends HTMLElement {
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
-    var label =  this.getAttribute('role') + ' Test ' + this.getAttribute('testid');
-    if( this.getAttribute('name') !== '' ) {
-        label += ": " + this.getAttribute('name');
+    var roleLabel =  this.getAttribute('role');
+    if( roleLabel ) {
+        roleLabel = roleLabel.indexOf(',') > 0 ? ( "Roles: " + roleLabel ) : ( "Role:" + roleLabel );
     }
-    label += ' (' + this.getAttribute('level') + ')';
-    this.shadowRoot.querySelector('h2').textContent = label;
+    var mainLabel =  "Test " + this.getAttribute('testid');
+    if( this.getAttribute( 'name')) {
+        mainLabel += ": " + this.getAttribute('name');
+    }
+    if( this.getAttribute('level')) {
+        mainLabel += ' (' + this.getAttribute('level') + ')';
+    }
+    this.shadowRoot.querySelector('p').textContent = roleLabel;
+    this.shadowRoot.querySelector('h2').textContent = mainLabel;
 
-    this.id = 'test-' + this.getAttribute('testid');
+    this.id = "test-" + this.getAttribute('testid');
   }
 }
 
@@ -90,12 +98,16 @@ customElements.define('annost-xref', AnnostCrossRef);
 customElements.define('annost-note', AnnostNote);
 
 document.addEventListener('DOMContentLoaded', function(event){
-  const already = document.findElementById('annost-title');
+  const already = document.getElementById('annost-title');
   if( already === null ) {
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = 'annost.css';
     const disclaimer = document.createElement('h1');
     disclaimer.id = 'annost-title';
     disclaimer.style = 'display: block; text-align: left; color: #c04040; padding: 20px; border: 1px solid #c04040; font-family: Arial';
-    disclaimer.innerHTML = 'Annotated by <a href="https://github.com/jernst/annost/">AnnoST</a>. Experimental :-)';
+    disclaimer.innerHTML = 'Annotated by <a href="https://github.com/jernst/annost/">AnnoST</a>.';
     document.getElementsByTagName('body')[0].prepend( disclaimer );
+    document.getElementsByTagName('body')[0].prepend( link );
   }
 });
