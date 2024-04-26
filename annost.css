@@ -18,6 +18,9 @@
 .annost div.annost-content {
     padding: 10px 20px;
 }
-.annost div.annost-content > :first-child {
-    margin-top: 0;
+.annost div.annost-content > p.annost-role {
+    margin: 0;
+}
+.annost div.annost-content > h2 {
+    margin: 0 0 1ex 0;
 }

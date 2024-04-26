@@ -54,7 +54,7 @@ class AnnostCrossRef extends HTMLElement {
       <section class='annost annost-xref'>
         <div class='annost-bar'>ANNOST XREF</div>
         <div class='annost-content'>
-          <h3></h3>
+          <h2></h2>
           <slot></slot>
         </div>
       </section>
@@ -71,7 +71,7 @@ class AnnostCrossRef extends HTMLElement {
     link.textContent = 'See Test ' + this.getAttribute('target');
 
     var label = 'See ' + this.getAttribute('target')
-    this.shadowRoot.querySelector('h3').replaceChildren(link);
+    this.shadowRoot.querySelector('h2').replaceChildren(link);
   }
 }
 
@@ -85,7 +85,7 @@ class AnnostNote extends HTMLElement {
       <section class='annost annost-note'>
         <div class='annost-bar'>ANNOST NOTE</div>
         <div class='annost-content'>
-          <h3>Note</h3>
+          <h2>Note</h2>
           <slot></slot>
         </div>
       </section>
