@@ -28,7 +28,7 @@ class AnnostTest extends HTMLElement {
   attributeChangedCallback(name, oldValue, newValue) {
     var roleLabel =  this.getAttribute('role');
     if( roleLabel ) {
-        roleLabel = roleLabel.indexOf(',') > 0 ? ( "Roles: " + roleLabel ) : ( "Role:" + roleLabel );
+        roleLabel = roleLabel.indexOf(',') > 0 ? ( "Roles: " + roleLabel ) : ( "Role: " + roleLabel );
     }
     var mainLabel =  "Test " + this.getAttribute('testid');
     if( this.getAttribute( 'name')) {
